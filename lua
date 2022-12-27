@@ -29,7 +29,7 @@ Player.CharacterAdded:Connect(function()
 end)
 
 function ChildAdded(Child)
-	task.delay(0.1, function()
+	task.delay(0.15, function()
 		if Child:FindFirstChild("Humanoid") and Child:FindFirstChild("HumanoidRootPart") then
 			local Connnection
 			Connnection = Child.HumanoidRootPart.ChildAdded:Connect(function(added)
