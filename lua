@@ -12,7 +12,7 @@ local function Call()
 	IsSkill = false	
 	if SizeConnection then SizeConnection:Disconnect() SizeConnection = nil end
 	SizeConnection = Player.PlayerGui.HUD.MainFrame.CDBack.E.Indicator:GetPropertyChangedSignal("Size"):Connect(function()
-		if game.Players.LocalPlayer.PlayerGui.HUD.MainFrame.CDBack.E.Indicator.Size == UDim2.new(1,0,1,0) then
+		if Player.PlayerGui.HUD.MainFrame.CDBack.E.Indicator.Size == UDim2.new(1,0,1,0) then
 			IsSkill = true
 			task.delay(0.45, function()
 				IsSkill = false
@@ -22,8 +22,10 @@ local function Call()
 end
 Call()
 
-Player.CharacterAdded:Connect(function()	
-	Call()
+Player.CharacterAdded:Connect(function()
+	task.delay(0.35, function()	
+		Call()
+	end)
 end)
 
 function ChildAdded(Child)
