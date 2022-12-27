@@ -33,15 +33,18 @@ function ChildAdded(Child)
 		if Child:FindFirstChild("Humanoid") and Child:FindFirstChild("HumanoidRootPart") then
 			local Connnection
 			Connnection = Child.HumanoidRootPart.ChildAdded:Connect(function(added)
-				if added.Name == "Motor6D" and added.Part0.Parent.Parent ~= nil and added.Part0.Parent.Parent.Name == Player.Name and string.find(Player.Character:WaitForChild("ServerControl").CurrentWep.Value, "Seidou") then
-					if IsSkill then
-						task.delay(0.45,function()
-							local ray = Ray.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.CFrame.LookVector * 85)
-							local part, position = workspace:FindPartOnRayWithWhitelist(ray, WorldTable)
-							if not part then
-								Player.Character.HumanoidRootPart.CFrame *= CFrame.new(0,0,-85)
-							end
-						end)
+				local Lock = _G.CurrentLockTarget
+				if Lock == nil or Lock ~= nil and Lock == added.Parent.Parent then
+					if added.Name == "Motor6D" and added.Part0.Parent.Parent ~= nil and added.Part0.Parent.Parent.Name == Player.Name and string.find(Player.Character:WaitForChild("ServerControl").CurrentWep.Value, "Seidou") then
+						if IsSkill then
+							task.delay(0.45,function()
+								local ray = Ray.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.CFrame.LookVector * 85)
+								local part, position = workspace:FindPartOnRayWithWhitelist(ray, WorldTable)
+								if not part then
+									Player.Character.HumanoidRootPart.CFrame *= CFrame.new(0,0,-85)
+								end
+							end)
+						end
 					end
 				end
 			end)
@@ -63,15 +66,18 @@ function F(Child)
 	if Child:FindFirstChild("Humanoid") and Child:FindFirstChild("HumanoidRootPart") then
 		local Connnection
 		Connnection = Child.HumanoidRootPart.ChildAdded:Connect(function(added)
-			if added.Name == "Motor6D" and added.Part0.Parent.Parent ~= nil and added.Part0.Parent.Parent.Name == Player.Name and string.find(Player.Character:WaitForChild("ServerControl").CurrentWep.Value, "Seidou") then
-				if IsSkill then
-					task.delay(0.45,function()
-						local ray = Ray.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.CFrame.LookVector * 85)
-						local part, position = workspace:FindPartOnRayWithWhitelist(ray, WorldTable)
-						if not part then
-							Player.Character.HumanoidRootPart.CFrame *= CFrame.new(0,0,-85)
-						end
-					end)
+			local Lock = _G.CurrentLockTarget
+			if Lock == nil or Lock ~= nil and Lock == added.Parent.Parent then
+				if added.Name == "Motor6D" and added.Part0.Parent.Parent ~= nil and added.Part0.Parent.Parent.Name == Player.Name and string.find(Player.Character:WaitForChild("ServerControl").CurrentWep.Value, "Seidou") then
+					if IsSkill then
+						task.delay(0.45,function()
+							local ray = Ray.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.CFrame.LookVector * 85)
+							local part, position = workspace:FindPartOnRayWithWhitelist(ray, WorldTable)
+							if not part then
+								Player.Character.HumanoidRootPart.CFrame *= CFrame.new(0,0,-85)
+							end
+						end)
+					end
 				end
 			end
 		end)
@@ -99,4 +105,4 @@ end)
 game.Workspace.NPCSpawns.DescendantRemoved:Connect(function(Child)
 	ChildRemoved(Child)
 end)
-game.StarterGui:SetCore("SendNotification", {Title = "Script Executed.", Text = "By: Toy, Script Loaded.", Duration = 4,})
+
