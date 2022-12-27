@@ -38,6 +38,11 @@ function ChildAdded(Child)
 					if added.Name == "Motor6D" and added.Part0.Parent.Parent ~= nil and added.Part0.Parent.Parent.Name == Player.Name and string.find(Player.Character:WaitForChild("ServerControl").CurrentWep.Value, "Seidou") then
 						if IsSkill then
 							task.delay(0.45,function()
+								local Anim = Instance.new("Animation")
+								Anim.AnimationId = "rbxassetid://2881558870"
+								Anim.Parent = Player.Character.HumanoidRootPart
+								local Track = Player.Character.Humanoid:LoadAnimation(Anim)
+								Track:Play()
 								local ray = Ray.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.CFrame.LookVector * 85)
 								local part, position = workspace:FindPartOnRayWithWhitelist(ray, WorldTable)
 								if not part then
@@ -71,6 +76,11 @@ function F(Child)
 				if added.Name == "Motor6D" and added.Part0.Parent.Parent ~= nil and added.Part0.Parent.Parent.Name == Player.Name and string.find(Player.Character:WaitForChild("ServerControl").CurrentWep.Value, "Seidou") then
 					if IsSkill then
 						task.delay(0.45,function()
+							local Anim = Instance.new("Animation")
+							Anim.AnimationId = "rbxassetid://2881558870"
+							Anim.Parent = Player.Character.HumanoidRootPart
+							local Track = Player.Character.Humanoid:LoadAnimation(Anim)
+							Track:Play()
 							local ray = Ray.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.CFrame.LookVector * 85)
 							local part, position = workspace:FindPartOnRayWithWhitelist(ray, WorldTable)
 							if not part then
@@ -105,4 +115,3 @@ end)
 game.Workspace.NPCSpawns.DescendantRemoved:Connect(function(Child)
 	ChildRemoved(Child)
 end)
-
